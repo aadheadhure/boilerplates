@@ -1,5 +1,5 @@
 {
-  "name": "ideam-client",
+  "name": "react-tailwind-sass-boilerplate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,8 +16,12 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "prebuild:react": "yarn build:tailwind",
+    "start:react": "react-scripts start",
+    "build:react": "cross-env NODE_ENV=production react-scripts build",
+    "start:tailwind": "postcss src/styles/tailwind.css -o src/styles/tailwind.output.css -w",
+    "build:tailwind": "postcss src/styles/tailwind.css -o src/styles/tailwind.output.css",
+    "dev": "cross-env NODE_ENV=development concurrently \"yarn run start:tailwind\" \"yarn start:react\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -35,5 +39,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "10.0.1",
+    "chokidar": "3.4.2",
+    "concurrently": "5.3.0",
+    "cross-env": "7.0.2",
+    "node-sass": "4.14.1",
+    "postcss": "8.1.1",
+    "postcss-cli": "8.0.0",
+    "prettier": "2.1.2",
+    "tailwindcss": "1.8.11"
   }
 }
